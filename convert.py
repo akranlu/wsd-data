@@ -1,10 +1,8 @@
-import xml.etree.ElementTree as ET
-from collections import defaultdict
-import glob
-import re
-import unicodedata
 import os
 import json
+
+import xml.etree.ElementTree as ET
+from collections import defaultdict
 from pathlib import Path
 
 directories = ['SemCor', 'ALL', 'semeval2007', 'semeval2013', 'semeval2015', 'senseval2', 'senseval3']
