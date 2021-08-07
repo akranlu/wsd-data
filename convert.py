@@ -2,6 +2,8 @@ import os
 import json
 
 import xml.etree.ElementTree as ET
+
+from tqdm import tqdm
 from collections import defaultdict
 from pathlib import Path
 
@@ -57,13 +59,13 @@ def parse_sense_data(xml_file, gold_file):
                     if " ".join(s.split(" ")[start:end]) != text:
                         print(i, text, " ".join(s.split(" ")[start:end]), s)
                     # word, position, pos, sentence, synset
-                    sense_annotations.append({'word': text, 'start': start, 'end': end, 'sense': gold[word.attrib['id']], 'lemma': word.attrib['lemma'], 'pos': word.attrib['pos'], 'sentence': s})
+                    sense_annotations.append({'id': word.attrib['id'], 'word': text, 'start': start, 'end': end, 'sense': gold[word.attrib['id']], 'lemma': word.attrib['lemma'], 'pos': word.attrib['pos'], 'sentence': s})
 
     return sense_annotations
 
 Path('data/jsonl').mkdir(exist_ok = True)
 
-for dir in directories:
+for dir in tqdm(directories):
     for r, d, f in os.walk(f'data/{dir}/'):
         for file in f:
             ext = os.path.splitext(f'data/{dir}/{file}')[1]
