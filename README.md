@@ -34,6 +34,7 @@ This script converts the datasets into jsonl files with the following format for
 
 ```json
 {
+    "id": "id as mentioned in wsd datasets.",
     "word": "<the word>",
     "start": "<start index of the span>",
     "end": "<end index of the span>",
